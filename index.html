@@ -23,17 +23,7 @@
   <section id="home" class="section active">
     <div class="container">
       <h1 class="section-title">Mis Recuerdos</h1>
-      
-      <div class="upload-section">
-        <input type="file" id="photo-upload" accept="image/*" class="file-input">
-        <label for="photo-upload" class="upload-label">
-          <span class="upload-icon">📁</span>
-          <span>Seleccionar foto</span>
-        </label>
-        <p class="upload-hint">Las fotos se guardan en tu navegador</p>
-      </div>
-      
-      <h2>Fotos Guardadas</h2>
+      <p style="text-align:center; margin-bottom:20px; color:#666;">Sube fotos en <a href="#" data-nav="admin">Admin</a></p>
       <div id="gallery" class="gallery"></div>
     </div>
   </section>
@@ -42,6 +32,16 @@
   <section id="admin" class="section">
     <div class="container">
       <h1 class="section-title">Panel de Administración</h1>
+      
+      <div class="admin-card">
+        <h2>Subir Foto</h2>
+        <input type="file" id="photo-upload" accept="image/*" class="file-input">
+        <label for="photo-upload" class="upload-label">
+          <span class="upload-icon">📁</span>
+          <span>Seleccionar foto</span>
+        </label>
+        <p class="upload-hint">Las fotos se guardan en tu navegador</p>
+      </div>
       
       <div class="admin-card">
         <h2>Gestión de Fotos</h2>
