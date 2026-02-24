@@ -7,7 +7,11 @@ let fotos = [];
 function initData() {
   const stored = localStorage.getItem('album_fotos');
   if (stored) {
-    fotos = JSON.parse(stored);
+    try {
+      fotos = JSON.parse(stored);
+    } catch (e) {
+      fotos = [];
+    }
   } else {
     fotos = [...PHOTOS_DEFAULT];
   }
@@ -22,17 +26,20 @@ function addFoto(foto) {
   foto.fecha = new Date().toLocaleDateString();
   fotos.unshift(foto);
   saveFotos();
+  window.fotos = fotos;
   return foto;
 }
 
 function removeFoto(id) {
   fotos = fotos.filter(f => f.id !== id);
   saveFotos();
+  window.fotos = fotos;
 }
 
 function resetFotos() {
   fotos = [...PHOTOS_DEFAULT];
   saveFotos();
+  window.fotos = fotos;
 }
 
 initData();
