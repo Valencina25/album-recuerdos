@@ -1,0 +1,14 @@
+{
+  "name": "album-recuerdos",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Álbum de recuerdos - Vanilla JS",
+  "scripts": {
+    "dev": "servor src --reload",
+    "build": "servor src dist --compress",
+    "test": "node --experimental-vm-modules"
+  },
+  "devDependencies": {
+    "servor": "^4.0.2"
+  }
+}
