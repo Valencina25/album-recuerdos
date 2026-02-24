@@ -17,7 +17,6 @@ function renderFotos() {
       </div>
       <div class="photo-info">
         <p>${foto.fecha}</p>
-        <button class="btn btn-danger btn-sm" onclick="deleteFoto(${foto.id})">Eliminar</button>
       </div>
     </div>
   `).join('');
