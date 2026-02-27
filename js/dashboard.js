@@ -24,9 +24,10 @@ function renderFotos() {
 
 function deleteFoto(id) {
   if (confirm('¿Eliminar esta foto?')) {
-    removeFoto(id);
-    renderFotos();
-    showToast('Foto eliminada');
+    removeFoto(id).then(() => {
+      renderFotos();
+      showToast('Foto eliminada');
+    });
   }
 }
 
@@ -53,10 +54,11 @@ function handleUpload(event) {
     addFoto({
       nombre: file.name,
       src: e.target.result
+    }).then(() => {
+      renderFotos();
+      showToast('Foto subida correctamente');
+      event.target.value = '';
     });
-    renderFotos();
-    showToast('Foto subida correctamente');
-    event.target.value = '';
   };
   reader.readAsDataURL(file);
 }
@@ -105,7 +107,9 @@ function showSection(sectionId) {
 // =============================
 // INICIALIZAR
 // =============================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await dbReady();
+  
   // Navegación
   document.querySelectorAll('[data-nav]').forEach(link => {
     link.addEventListener('click', (e) => {
@@ -125,10 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnReset) {
     btnReset.addEventListener('click', () => {
       if (confirm('¿Eliminar todas las fotos?')) {
-        resetFotos();
-        renderFotos();
-        renderAdminList();
-        showToast('Todas las fotos eliminadas');
+        resetFotos().then(() => {
+          renderFotos();
+          renderAdminList();
+          showToast('Todas las fotos eliminadas');
+        });
       }
     });
   }
