@@ -27,34 +27,24 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-let fotos = [];
-let nextId = 1;
+const DB_FILE = path.join(__dirname, 'fotos.json');
 
-function scanUploads() {
-  if (!fs.existsSync(uploadsDir)) return;
-  
-  const files = fs.readdirSync(uploadsDir).filter(file => {
-    const ext = path.extname(file).toLowerCase();
-    return ['.jpg', '.jpeg', '.png', '.gif', '.webp'].includes(ext);
-  });
-  
-  files.forEach(file => {
-    const stats = fs.statSync(path.join(uploadsDir, file));
-    const timestamp = parseInt(file.split('-')[0]) || Date.now();
-    if (timestamp >= nextId) nextId = timestamp + 1;
-    
-    fotos.push({
-      id: timestamp,
-      nombre: file,
-      src: `/uploads/${file}`,
-      fecha: stats.birthtime.toLocaleDateString('es-ES')
-    });
-  });
-  
-  fotos.sort((a, b) => b.id - a.id);
+function loadFotos() {
+  if (fs.existsSync(DB_FILE)) {
+    const data = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+    fotos = data.fotos || [];
+    nextId = data.nextId || 1;
+  } else {
+    fotos = [];
+    nextId = 1;
+  }
 }
 
-scanUploads();
+function saveFotos() {
+  fs.writeFileSync(DB_FILE, JSON.stringify({ fotos, nextId }, null, 2));
+}
+
+loadFotos();
 
 app.get('/api/fotos', (req, res) => {
   res.json(fotos);
@@ -87,6 +77,7 @@ app.post('/api/fotos', upload.single('foto'), (req, res) => {
   };
 
   fotos.unshift(foto);
+  saveFotos();
   res.json(foto);
 });
 
@@ -106,6 +97,7 @@ app.delete('/api/fotos/:id', (req, res) => {
   }
 
   fotos.splice(index, 1);
+  saveFotos();
   res.json({ success: true });
 });
 
@@ -117,6 +109,7 @@ app.delete('/api/fotos', (req, res) => {
     }
   });
   fotos = [];
+  saveFotos();
   res.json({ success: true });
 });
 
