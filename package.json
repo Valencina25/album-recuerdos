@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Álbum de recuerdos - Vanilla JS",
   "scripts": {
-    "dev": "servor src --reload",
+    "dev": "servor . --reload",
     "build": "servor src dist --compress",
     "test": "node --experimental-vm-modules"
   },
