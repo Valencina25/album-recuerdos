@@ -1,4 +1,21 @@
-node_modules/
+# Sistema operativo
 .DS_Store
-fotos.json
-uploads/
+Thumbs.db
+
+# Archivos temporales
+*.log
+*.tmp
+*~
+*.swp
+*.bak
+*.old
+
+# Dependencias (si las hay)
+node_modules/
+__pycache__/
+
+# IDEs / editores
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
