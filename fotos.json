@@ -1,0 +1,41 @@
+{
+  "fotos": [
+    {
+      "id": 6,
+      "nombre": "acelga.jpg",
+      "src": "/uploads/1778329289623-265591642.jpg",
+      "fecha": "9/5/2026"
+    },
+    {
+      "id": 5,
+      "nombre": "albaricoque.jpg",
+      "src": "/uploads/1778328654089-836575477.jpg",
+      "fecha": "9/5/2026"
+    },
+    {
+      "id": 4,
+      "nombre": "aguacate.jpg",
+      "src": "/uploads/1778328591656-724374023.jpg",
+      "fecha": "9/5/2026"
+    },
+    {
+      "id": 3,
+      "nombre": "tomate.jpg",
+      "src": "/uploads/1778328349235-827214194.jpg",
+      "fecha": "9/5/2026"
+    },
+    {
+      "id": 2,
+      "nombre": "botijo.jpg",
+      "src": "/uploads/1778328188420-825597563.jpg",
+      "fecha": "9/5/2026"
+    },
+    {
+      "id": 1,
+      "nombre": "berejena morada.jpg",
+      "src": "/uploads/1778328123289-609337748.jpg",
+      "fecha": "9/5/2026"
+    }
+  ],
+  "nextId": 7
+}
